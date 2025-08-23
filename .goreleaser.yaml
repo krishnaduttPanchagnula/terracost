@@ -3,7 +3,7 @@ project_name: terracost
 
 builds:
   - id: terracost
-    main: ./api/cli/main.go # Path inside api/cli to your main.go
+    main: ./main.go # Path inside api/cli to your main.go
     binary: terracost # Name of the output binary
     goos:
       - linux
