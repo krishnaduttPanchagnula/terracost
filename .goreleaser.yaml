@@ -3,8 +3,8 @@ project_name: terracost
 
 builds:
   - id: terracost
-    main: ./main.go # Path inside api/cli to your main.go
-    binary: terracost # Name of the output binary
+    main: ./main.go
+    binary: terracost
     goos:
       - linux
       - windows
@@ -27,6 +27,7 @@ archives:
     builds:
       - terracost
     format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     files:
       - LICENSE
       - README.md
@@ -45,7 +46,7 @@ changelog:
 release:
   github:
     owner: krishnaduttPanchagnula
-    name: krishnaduttPanchagnula
+    name: terracost
     # draft: false
     # prerelease: false
 
