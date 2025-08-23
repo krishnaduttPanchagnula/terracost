@@ -1,0 +1,198 @@
+
+{
+  "format_version": "1.2",
+  "terraform_version": "1.12.1",
+  "planned_values": {
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_instance.ec1",
+          "mode": "managed",
+          "type": "aws_instance",
+          "name": "ec1",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 2,
+          "values": {
+            "ami": "ami-0a123456789example",
+            "credit_specification": [],
+            "get_password_data": false,
+            "hibernation": null,
+            "instance_type": "t2.micro",
+            "launch_template": [],
+            "region": "eu-west-1",
+            "source_dest_check": true,
+            "tags": {
+              "Name": "example-instance-1"
+            },
+            "tags_all": {
+              "Name": "example-instance-1"
+            },
+            "timeouts": null,
+            "user_data": null,
+            "user_data_replace_on_change": false,
+            "volume_tags": null
+          },
+          "sensitive_values": {}
+        },
+        {
+          "address": "aws_instance.ec4",
+          "mode": "managed",
+          "type": "aws_instance",
+          "name": "ec4",
+          "provider_name": "registry.terraform.io/hashicorp/aws",
+          "schema_version": 2,
+          "values": {
+            "ami": "ami-0a123456789example",
+            "credit_specification": [],
+            "get_password_data": false,
+            "hibernation": null,
+            "instance_type": "t3.medium",
+            "launch_template": [],
+            "region": "eu-west-1",
+            "source_dest_check": true,
+            "tags": {
+              "Name": "example-instance-2"
+            },
+            "tags_all": {
+              "Name": "example-instance-2"
+            },
+            "timeouts": null,
+            "user_data": null,
+            "user_data_replace_on_change": false,
+            "volume_tags": null
+          },
+          "sensitive_values": {}
+        }
+      ]
+    }
+  },
+  "resource_changes": [
+    {
+      "address": "aws_instance.ec1",
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "ec1",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": ["create"],
+        "before": null,
+        "after": {
+          "ami": "ami-0a123456789example",
+          "credit_specification": [],
+          "get_password_data": false,
+          "hibernation": null,
+          "instance_type": "t2.micro",
+          "launch_template": [],
+          "region": "eu-west-1",
+          "source_dest_check": true,
+          "tags": {
+            "Name": "example-instance-1"
+          },
+          "tags_all": {
+            "Name": "example-instance-1"
+          },
+          "timeouts": null,
+          "user_data": null,
+          "user_data_replace_on_change": false,
+          "volume_tags": null
+        },
+        "after_unknown": {}
+      }
+    },
+    {
+      "address": "aws_instance.ec4",
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "ec4",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": ["create"],
+        "before": null,
+        "after": {
+          "ami": "ami-0a123456789example",
+          "credit_specification": [],
+          "get_password_data": false,
+          "hibernation": null,
+          "instance_type": "t3.medium",
+          "launch_template": [],
+          "region": "eu-west-1",
+          "source_dest_check": true,
+          "tags": {
+            "Name": "example-instance-2"
+          },
+          "tags_all": {
+            "Name": "example-instance-2"
+          },
+          "timeouts": null,
+          "user_data": null,
+          "user_data_replace_on_change": false,
+          "volume_tags": null
+        },
+        "after_unknown": {}
+      }
+    }
+  ],
+  "configuration": {
+    "provider_config": {
+      "aws": {
+        "name": "aws",
+        "full_name": "registry.terraform.io/hashicorp/aws",
+        "expressions": {
+          "region": {
+            "constant_value": "eu-west-1"
+          }
+        }
+      }
+    },
+    "root_module": {
+      "resources": [
+        {
+          "address": "aws_instance.ec1",
+          "mode": "managed",
+          "type": "aws_instance",
+          "name": "ec1",
+          "provider_config_key": "aws",
+          "expressions": {
+            "ami": {
+              "constant_value": "ami-0a123456789example"
+            },
+            "instance_type": {
+              "constant_value": "t2.micro"
+            },
+            "tags": {
+              "constant_value": {
+                "Name": "example-instance-1"
+              }
+            }
+          },
+          "schema_version": 2
+        },
+        {
+          "address": "aws_instance.ec4",
+          "mode": "managed",
+          "type": "aws_instance",
+          "name": "ec4",
+          "provider_config_key": "aws",
+          "expressions": {
+            "ami": {
+              "constant_value": "ami-0a123456789example"
+            },
+            "instance_type": {
+              "constant_value": "t3.medium"
+            },
+            "tags": {
+              "constant_value": {
+                "Name": "example-instance-2"
+              }
+            }
+          },
+          "schema_version": 2
+        }
+      ]
+    }
+  },
+  "timestamp": "2025-08-15T12:15:28Z",
+  "applyable": true,
+  "complete": true,
+  "errored": false
+}

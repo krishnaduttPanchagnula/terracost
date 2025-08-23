@@ -1,0 +1,48 @@
+name: Release with GoReleaser
+
+on:
+  push:
+    tags:
+      - "v*" # Only run on tags starting with 'v', e.g., v1.2.3
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  release:
+    name: GoReleaser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      # (Optional) Cache Go modules for faster builds
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+
+      - name: Create .env file
+        run: |
+          echo "TERRACOST_AUTHORIZATION_KEY=${{ secrets.TERRACOST_AUTHORIZATION_KEY }}" >> .env
+          echo "IP=${{ secrets.IP }}" >> .env
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: "~> v2"
+          args: release --clean --config .goreleaser.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GORELEASE_GITHUB_TOKEN }}

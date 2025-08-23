@@ -1,0 +1,61 @@
+# api/cli/.goreleaser.yaml
+project_name: terracost
+
+builds:
+  - id: terracost
+    main: ./api/cli/main.go # Path inside api/cli to your main.go
+    binary: terracost # Name of the output binary
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w
+      - -X TerraCloud-Internal/api/cli/version.Version={{.Version}}
+      - -X TerraCloud-Internal/api/cli/version.Commit={{.Commit}}
+      - -X TerraCloud-Internal/api/cli/version.Date={{.Date}}
+      - -X TerraCloud-Internal/api/cli/version.BuiltBy=goreleaser
+archives:
+  - id: archive
+    builds:
+      - terracost
+    format: tar.gz
+    files:
+      - LICENSE
+      - README.md
+
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
+
+changelog:
+  use: git
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+release:
+  github:
+    owner: krishnaduttPanchagnula
+    name: krishnaduttPanchagnula
+    # draft: false
+    # prerelease: false
+
+snapshot:
+  name_template: "snapshot"
+# dockers:
+#   # Define if you want to build docker images
+#
+# nfpms:
+#   # Define Debian packages if required
+#
+# brews:
+#   # Define Homebrew tap settings if needed
