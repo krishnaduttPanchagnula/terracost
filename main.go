@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	clicmd "terracostcli/cmd"
 	"text/tabwriter"
 
 	"github.com/joho/godotenv"
@@ -111,8 +112,6 @@ func main() {
 	)
 	envFile, _ := godotenv.Read(".env")
 
-	AUTHORIZATION_KEY := envFile["TERRACOST_AUTHORIZATION_KEY"]
-	// const URL = "http://184.72.89.246:8080/upload"
 	IP := envFile["IP"]
 	URL := fmt.Sprintf("http://%s:8080/upload", IP)
 	rootCmd := &cobra.Command{
@@ -127,10 +126,10 @@ func main() {
 		Run: func(cmd *cobra.Command, args []string) {
 			filename := args[0]
 			if authKey == "" {
-				authKey = AUTHORIZATION_KEY
+				authKey, _ = clicmd.LoadToken()
 			}
 			if authKey == "" {
-				fmt.Println("Authorization key is missing. Set it with the flag or an env var.")
+				fmt.Println("No authorization token found. Please run `terracost login` first.")
 				os.Exit(1)
 			}
 			if url == "" {
@@ -148,5 +147,6 @@ func main() {
 	uploadCmd.Flags().StringVarP(&url, "url", "u", "", "Upload URL")
 
 	rootCmd.AddCommand(uploadCmd)
+	rootCmd.AddCommand(clicmd.LoginCmd)
 	rootCmd.Execute()
 }
