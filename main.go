@@ -119,6 +119,9 @@ func main() {
 		Short: "A CLI tool for getting the cost of your terraform plan",
 	}
 
+	//needs to be refactored to cmd folder
+	//
+
 	uploadCmd := &cobra.Command{
 		Use:   "upload [file_path]",
 		Short: "Upload the added terraformplan file in json",
