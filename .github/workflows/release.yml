@@ -35,6 +35,8 @@ jobs:
 
       - name: Create .env file
         run: |
+          ls
+          rm .env
           echo "TERRACOST_AUTHORIZATION_KEY=${{ secrets.TERRACOST_AUTHORIZATION_KEY }}" >> .env
           echo "IP=${{ secrets.IP }}" >> .env
 
